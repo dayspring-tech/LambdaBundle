@@ -7,7 +7,7 @@ This bundle provides tooling for using Lambda to run Symfony code.
 - Add `Bootstrap/service.php` to your image as `/var/run/bootstrap`, and make it executable
   ``` 
   # this is really what does the magic
-  COPY symfony/src/Dayspring/LambdaBundle/Bootstrap/service.php /var/runtime/bootstrap
+  COPY symfony/vendor/dayspring-tech/lambda-bundle/Bootstrap/service.php /var/runtime/bootstrap
   RUN chmod a+x /var/runtime/bootstrap
   ``` 
 
