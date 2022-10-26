@@ -12,7 +12,7 @@ use function json_encode;
 use function var_dump;
 use function var_export;
 
-class SqsServiceFunctionHandlerService extends ServiceFunctionHandlerService
+class ServiceFunctionHandlerService implements LambdaHandlerServiceInterface
 {
 
     /** @var LoggerInterface $logger */
@@ -37,11 +37,17 @@ class SqsServiceFunctionHandlerService extends ServiceFunctionHandlerService
 
     public function handle($event, Context $context, OutputInterface $output)
     {
-        foreach ($event['Records'] as $record) {
-            $data = json_decode($record['body'], true);
+        $object = $this->container->get($event['serviceName']);
 
-            parent::handle($data, $context, $output);
-        }
+        $this->logger->info(sprintf(
+            'SqsServiceFunctionHandlerService will run %s::%s with %s',
+            $event['serviceName'],
+            $event['function'],
+            json_encode($event['args'])
+        ));
+
+        $callbackReturn = call_user_func_array([$object, $event['function']], $event['args']);
+        $output->writeln(var_export($callbackReturn, true));
 
         return 0;
     }

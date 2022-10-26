@@ -52,10 +52,10 @@ This handler will echo the event `body` value to Lambda's output. Useful for tes
 }
 ```
 
-### SqsServiceFunctionHandlerService
-This handler can handle SQS messages and call any public function on any service available via Symfony's dependency injection container. 
+### ServiceFunctionHandlerService
+This handler can handle lambda events and call any public function on any service available via Symfony's dependency injection container.
 
-It expects SQS messages in the format:
+It expects a lambda event in the format:
 ```
 {
     "serviceName": "AppBundle\\Service\\EchoService",
@@ -68,6 +68,12 @@ It expects SQS messages in the format:
 - `serviceName`: any service identifier valid with `Container::get()`. This will likely be a service class name.
 - `function`: the function name
 - `args`: an array of arguments to the function
+
+
+### SqsServiceFunctionHandlerService
+This handler does the same thing as `ServiceFunctionHandlerService` but for messages sent via SQS
+
+It expects payloads to be sent via SQS instead of directly to Lambda.
 
 ### Other implementation possibilities
 - API Gateway - Configure a Lambda integration with API Gateway and use Symfony to handle API requests
