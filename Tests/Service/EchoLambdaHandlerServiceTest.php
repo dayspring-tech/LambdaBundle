@@ -1,6 +1,6 @@
 <?php
 
-namespace Dayspring\LambdaBundle\Tests\Services;
+namespace Dayspring\LambdaBundle\Tests\Service;
 
 class EchoLambdaHandlerServiceTest extends \PHPUnit\Framework\TestCase
 {
@@ -9,8 +9,8 @@ class EchoLambdaHandlerServiceTest extends \PHPUnit\Framework\TestCase
     {
         $logger = $this->createMock(\Psr\Log\LoggerInterface::class);
 
-        /** @var \Dayspring\LambdaBundle\Services\EchoLambdaHandlerService $service */
-        $service = new \Dayspring\LambdaBundle\Services\EchoLambdaHandlerService($logger);
+        /** @var \Dayspring\LambdaBundle\Service\EchoLambdaHandlerService $service */
+        $service = new \Dayspring\LambdaBundle\Service\EchoLambdaHandlerService($logger);
 
         $context = new \Bref\Context\Context(
             'request-id-1',

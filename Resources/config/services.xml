@@ -5,11 +5,11 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Dayspring\LambdaBundle\Services\EchoLambdaHandlerService" class="Dayspring\LambdaBundle\Services\EchoLambdaHandlerService" public="true">
-            <argument type="service" id="logger" />
-        </service>
-        <service id="Dayspring\LambdaBundle\Services\SqsLambdaHandlerService" class="Dayspring\LambdaBundle\Services\SqsLambdaHandlerService" public="true">
-            <argument type="service" id="logger" />
-        </service>
+        <!-- public must be true for service tests that get the service from the container to work -->
+        <!-- symfony 4.1 should fix this: https://symfony.com/blog/new-in-symfony-4-1-simpler-service-testing -->
+        <defaults autowire="false" autoconfigure="false" public="true" >
+        </defaults>
+
+        <prototype namespace="Dayspring\LambdaBundle\Service\" resource="../../Service/*" autowire="true" autoconfigure="true" />
     </services>
 </container>

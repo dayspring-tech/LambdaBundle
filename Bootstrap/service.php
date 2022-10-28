@@ -3,7 +3,7 @@
 
 use Bref\Context\Context;
 use Bref\Runtime\LambdaRuntime;
-use Dayspring\LambdaBundle\Services\LambdaHandlerServiceInterface;
+use Dayspring\LambdaBundle\Service\LambdaHandlerServiceInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
@@ -21,7 +21,7 @@ $lambdaRuntime = LambdaRuntime::fromEnvironmentVariable('console');
 
 $env = getenv('SYMFONY_ENV') ?: 'dev';
 $debug = getenv('SYMFONY_DEBUG') !== '0' && $env !== 'prod';
-$handlerService = getenv('_HANDLER') ?: 'Dayspring\LambdaBundle\Services\EchoLambdaHandlerService';
+$handlerService = getenv('_HANDLER') ?: 'Dayspring\LambdaBundle\Service\EchoLambdaHandlerService';
 
 
 if ($debug) {
