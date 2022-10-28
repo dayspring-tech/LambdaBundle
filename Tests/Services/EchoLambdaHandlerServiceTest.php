@@ -25,7 +25,7 @@ class EchoLambdaHandlerServiceTest extends \PHPUnit\Framework\TestCase
         ];
         $return = $service->handle($event, $context, $output);
 
-        $this->assertEquals(0, $return);
+        $this->assertEquals([], $return);
         $this->assertEquals("hello world\n", $output->fetch());
     }
 
