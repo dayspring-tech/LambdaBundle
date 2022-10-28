@@ -1,6 +1,6 @@
 <?php
 
-namespace Dayspring\LambdaBundle\Services;
+namespace Dayspring\LambdaBundle\Service;
 
 use Bref\Context\Context;
 use Psr\Log\LoggerInterface;
