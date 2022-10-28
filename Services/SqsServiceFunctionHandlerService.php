@@ -7,6 +7,8 @@ use Dayspring\LambdaBundle\Services\LambdaHandlerServiceInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use function is_a;
+use function is_array;
 use function json_decode;
 use function json_encode;
 use function var_dump;
@@ -35,15 +37,17 @@ class SqsServiceFunctionHandlerService extends ServiceFunctionHandlerService
     }
 
 
-    public function handle($event, Context $context, OutputInterface $output)
+    public function handle($event, Context $context, OutputInterface $output): array
     {
+        $callbackReturn = [];
         foreach ($event['Records'] as $record) {
             $data = json_decode($record['body'], true);
 
-            parent::handle($data, $context, $output);
+            $iterationReturn = parent::handle($data, $context, $output);
+            $callbackReturn[] = $iterationReturn && is_array($iterationReturn) ? $iterationReturn : [];
         }
 
-        return 0;
+        return $callbackReturn;
     }
 
 }

@@ -20,12 +20,12 @@ class SqsLambdaHandlerService implements LambdaHandlerServiceInterface
         $this->logger = $logger;
     }
 
-    public function handle($event, Context $context, OutputInterface $output)
+    public function handle($event, Context $context, OutputInterface $output): array
     {
         foreach ($event['Records'] as $e) {
             $output->writeln($e['body']);
         }
 
-        return 0;
+        return [];
     }
 }

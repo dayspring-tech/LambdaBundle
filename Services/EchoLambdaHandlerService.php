@@ -20,10 +20,10 @@ class EchoLambdaHandlerService implements LambdaHandlerServiceInterface
         $this->logger = $logger;
     }
 
-    public function handle($event, Context $context, OutputInterface $output)
+    public function handle($event, Context $context, OutputInterface $output): array
     {
         $output->writeln($event['body']);
 
-        return 0;
+        return [];
     }
 }

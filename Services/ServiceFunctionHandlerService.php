@@ -35,7 +35,7 @@ class ServiceFunctionHandlerService implements LambdaHandlerServiceInterface
     }
 
 
-    public function handle($event, Context $context, OutputInterface $output)
+    public function handle($event, Context $context, OutputInterface $output): array
     {
         $object = $this->container->get($event['serviceName']);
 
@@ -49,7 +49,7 @@ class ServiceFunctionHandlerService implements LambdaHandlerServiceInterface
         $callbackReturn = call_user_func_array([$object, $event['function']], $event['args']);
         $output->writeln(var_export($callbackReturn, true));
 
-        return 0;
+        return $callbackReturn && is_array($callbackReturn) ? $callbackReturn : [];
     }
 
 }
