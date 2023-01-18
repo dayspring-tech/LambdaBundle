@@ -6,7 +6,7 @@ on:
 jobs:
   test:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -20,7 +20,7 @@ jobs:
           - '--prefer-lowest'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use PHP
         uses: shivammathur/setup-php@v2
@@ -28,7 +28,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: sqlite3, zip
           coverage: xdebug
-          tools: composer:v1
+          tools: composer:v2
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -38,7 +38,7 @@ jobs:
 
       - name: cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.composer }}-composer-${{ hashFiles('**/composer.lock') }}
