@@ -31,7 +31,7 @@ if ($lambdaMemorySize) {
     if (!is_numeric($lambdaMemorySize)) {
         printf("AWS_LAMBDA_FUNCTION_MEMORY_SIZE expected to be numeric, '%s' given\n", $lambdaMemorySize);
     } else {
-        $phpMemoryLimit = (int)$lambdaMemorySize - self::RESERVED_MEMORY_SIZE;
+        $phpMemoryLimit = (int)$lambdaMemorySize - RESERVED_MEMORY_SIZE;
         printf("Configured memory: %d MB; setting memory_limit to %d MB\n", $lambdaMemorySize, $phpMemoryLimit);
         ini_set('memory_limit', sprintf("%dM", $phpMemoryLimit));
     }
