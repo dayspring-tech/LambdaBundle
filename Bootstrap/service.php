@@ -9,7 +9,7 @@ use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 
 // memory to save for system overhead (in MB)
-const RESERVED_MEMORY_SIZE = 96;
+const DEFAULT_RESERVED_MEMORY_SIZE = 96;
 
 set_time_limit(0);
 
@@ -29,12 +29,18 @@ $handlerService = getenv('_HANDLER') ?: 'Dayspring\LambdaBundle\Service\EchoLamb
 $lambdaMemorySize = getenv('AWS_LAMBDA_FUNCTION_MEMORY_SIZE');
 if ($lambdaMemorySize) {
     if (!is_numeric($lambdaMemorySize)) {
-        printf("AWS_LAMBDA_FUNCTION_MEMORY_SIZE expected to be numeric, '%s' given\n", $lambdaMemorySize);
-    } else {
-        $phpMemoryLimit = (int)$lambdaMemorySize - RESERVED_MEMORY_SIZE;
-        printf("Configured memory: %d MB; setting memory_limit to %d MB\n", $lambdaMemorySize, $phpMemoryLimit);
-        ini_set('memory_limit', sprintf("%dM", $phpMemoryLimit));
+        die(sprintf("AWS_LAMBDA_FUNCTION_MEMORY_SIZE expected to be numeric, '%s' given\n", $lambdaMemorySize));
     }
+
+    $reservedMemorySize = getenv('RESERVED_MEMORY_SIZE') ?: DEFAULT_RESERVED_MEMORY_SIZE;
+    if (!is_numeric($reservedMemorySize)) {
+        printf("RESERVED_MEMORY_SIZE expected to be numeric, '%s' given; using default.\n", $reservedMemorySize);
+        $reservedMemorySize = DEFAULT_RESERVED_MEMORY_SIZE;
+    }
+
+    $phpMemoryLimit = (int)$lambdaMemorySize - $reservedMemorySize;
+    printf("Configured memory: %d MB; setting memory_limit to %d MB\n", $lambdaMemorySize, $phpMemoryLimit);
+    ini_set('memory_limit', sprintf("%dM", $phpMemoryLimit));
 }
 
 
