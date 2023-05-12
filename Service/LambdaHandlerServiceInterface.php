@@ -7,5 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 interface LambdaHandlerServiceInterface
 {
+    public function init();
+
     public function handle($event, Context $context, OutputInterface $output): array;
 }
