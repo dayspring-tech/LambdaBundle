@@ -20,6 +20,11 @@ class SqsLambdaHandlerService implements LambdaHandlerServiceInterface
         $this->logger = $logger;
     }
 
+    public function init()
+    {
+        // nothing to init
+    }
+
     public function handle($event, Context $context, OutputInterface $output): array
     {
         foreach ($event['Records'] as $e) {

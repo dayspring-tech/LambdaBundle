@@ -55,6 +55,8 @@ try {
     $kernel->boot();
 
     $service = $kernel->getContainer()->get($handlerService);
+
+    $service->init();
 } catch (Exception $e) {
     // error getting service
     $lambdaRuntime->failInitialization(sprintf(

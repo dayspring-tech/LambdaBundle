@@ -36,6 +36,11 @@ class SqsServiceFunctionHandlerService extends ServiceFunctionHandlerService
         $this->container = $container;
     }
 
+    public function init()
+    {
+        // nothing to init
+    }
+
 
     public function handle($event, Context $context, OutputInterface $output): array
     {
