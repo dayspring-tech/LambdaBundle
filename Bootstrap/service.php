@@ -5,7 +5,7 @@ use Bref\Context\Context;
 use Bref\Runtime\LambdaRuntime;
 use Dayspring\LambdaBundle\Service\LambdaHandlerServiceInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
-use Symfony\Component\Debug\Debug;
+use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 
 // memory to save for system overhead (in MB)
