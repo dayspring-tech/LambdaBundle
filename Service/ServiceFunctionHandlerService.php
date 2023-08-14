@@ -3,23 +3,18 @@
 namespace Dayspring\LambdaBundle\Service;
 
 use Bref\Context\Context;
-use Dayspring\LambdaBundle\Service\LambdaHandlerServiceInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use function json_decode;
-use function json_encode;
-use function var_dump;
-use function var_export;
 
 class ServiceFunctionHandlerService implements LambdaHandlerServiceInterface
 {
 
     /** @var LoggerInterface $logger */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /** @var ContainerInterface $container */
-    protected $container;
+    protected ContainerInterface $container;
 
 
     /**

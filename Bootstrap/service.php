@@ -5,7 +5,7 @@ use Bref\Context\Context;
 use Bref\Runtime\LambdaRuntime;
 use Dayspring\LambdaBundle\Service\LambdaHandlerServiceInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
-use Symfony\Component\Debug\Debug;
+use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 
 // memory to save for system overhead (in MB)
@@ -51,7 +51,8 @@ if ($debug) {
 /** @var LambdaHandlerServiceInterface $service */
 $service = null;
 try {
-    $kernel = new AppKernel($env, $debug);
+    $kernelClass = getenv('KERNEL_CLASS') ?: 'AppKernel';
+    $kernel = new $kernelClass($env, $debug);
     $kernel->boot();
 
     $service = $kernel->getContainer()->get($handlerService);
