@@ -21,7 +21,8 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.4",
+        "ext-json": "*",
         "symfony/dotenv": "^4.4|^5.0",
         "symfony/framework-bundle": "^4.4|^5.0",
         "symfony/yaml": "^4.4|^5.0",

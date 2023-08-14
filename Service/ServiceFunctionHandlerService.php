@@ -11,10 +11,10 @@ class ServiceFunctionHandlerService implements LambdaHandlerServiceInterface
 {
 
     /** @var LoggerInterface $logger */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /** @var ContainerInterface $container */
-    protected $container;
+    protected ContainerInterface $container;
 
 
     /**

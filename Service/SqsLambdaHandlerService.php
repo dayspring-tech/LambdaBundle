@@ -10,7 +10,7 @@ class SqsLambdaHandlerService implements LambdaHandlerServiceInterface
 {
 
     /** @var LoggerInterface $logger */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * @param LoggerInterface $logger
