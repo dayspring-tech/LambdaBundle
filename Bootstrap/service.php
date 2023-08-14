@@ -51,7 +51,8 @@ if ($debug) {
 /** @var LambdaHandlerServiceInterface $service */
 $service = null;
 try {
-    $kernel = new AppKernel($env, $debug);
+    $kernelClass = getenv('KERNEL_CLASS') ?: 'AppKernel';
+    $kernel = new $kernelClass($env, $debug);
     $kernel->boot();
 
     $service = $kernel->getContainer()->get($handlerService);
