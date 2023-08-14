@@ -2,23 +2,28 @@
 
 namespace Dayspring\LambdaBundle\Tests\Service;
 
-class EchoLambdaHandlerServiceTest extends \PHPUnit\Framework\TestCase
+use Bref\Context\Context;
+use Dayspring\LambdaBundle\Service\EchoLambdaHandlerService;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Output\BufferedOutput;
+
+class EchoLambdaHandlerServiceTest extends TestCase
 {
 
     public function testHandle()
     {
-        $logger = $this->createMock(\Psr\Log\LoggerInterface::class);
+        $logger = $this->createMock(LoggerInterface::class);
 
-        /** @var \Dayspring\LambdaBundle\Service\EchoLambdaHandlerService $service */
-        $service = new \Dayspring\LambdaBundle\Service\EchoLambdaHandlerService($logger);
+        $service = new EchoLambdaHandlerService($logger);
 
-        $context = new \Bref\Context\Context(
+        $context = new Context(
             'request-id-1',
             30*1000,
             'my-function-arn',
             'trace-id-1'
         );
-        $output = new \Symfony\Component\Console\Output\BufferedOutput();
+        $output = new BufferedOutput();
 
         $event = [
             'body' => 'hello world'

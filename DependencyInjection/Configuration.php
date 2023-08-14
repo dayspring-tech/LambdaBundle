@@ -15,10 +15,9 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('dayspring_lambda');
+        $treeBuilder = new TreeBuilder('dayspring_lambda');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
