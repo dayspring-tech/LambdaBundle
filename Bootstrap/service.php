@@ -24,7 +24,7 @@ $lambdaRuntime = LambdaRuntime::fromEnvironmentVariable('console');
 
 $env = getenv('SYMFONY_ENV') ?: 'dev';
 $debug = getenv('SYMFONY_DEBUG') !== '0' && $env !== 'prod';
-$handlerService = getenv('_HANDLER') ?: 'Dayspring\LambdaBundle\Service\EchoLambdaHandlerService';
+$handlerService = getenv('_HANDLER') ?: \Dayspring\LambdaBundle\Service\EchoLambdaHandlerService::class;
 
 $lambdaMemorySize = getenv('AWS_LAMBDA_FUNCTION_MEMORY_SIZE');
 if ($lambdaMemorySize) {
