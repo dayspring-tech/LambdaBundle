@@ -23,9 +23,9 @@
     "require": {
         "php": ">=8.0",
         "ext-json": "*",
-        "symfony/dotenv": "^4.4|^5.0|^6.0",
-        "symfony/framework-bundle": "^4.4|^5.0|^6.0",
-        "symfony/yaml": "^4.4|^5.0|^6.0",
+        "symfony/dotenv": "^4.4|^5.0|^6.0|^7.0",
+        "symfony/framework-bundle": "^4.4|^5.0|^6.0|^7.0",
+        "symfony/yaml": "^4.4|^5.0|^6.0|^7.0",
         "bref/bref": "^2.1.17"
     },
     "require-dev": {
