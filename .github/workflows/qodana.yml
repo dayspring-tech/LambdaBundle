@@ -52,7 +52,7 @@ jobs:
         working-directory: ./
 
       - name: 'Qodana Scan'
-        uses: JetBrains/qodana-action@v2023.2
+        uses: JetBrains/qodana-action@v2024.1
         with:
           args: --baseline,qodana.sarif.json
         env:
