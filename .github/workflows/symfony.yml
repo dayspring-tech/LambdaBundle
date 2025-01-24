@@ -20,6 +20,9 @@ jobs:
         deps:
           - 'highest'
           - 'lowest'
+        exclude:
+          - php: '8.4'
+            deps: 'lowest'
   
     steps:
       - uses: actions/checkout@v4
