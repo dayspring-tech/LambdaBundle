@@ -24,7 +24,7 @@ $lambdaRuntime = LambdaRuntime::fromEnvironmentVariable('console');
 
 $env = getenv('SYMFONY_ENV') ?: 'dev';
 $debug = getenv('SYMFONY_DEBUG') !== '0' && $env !== 'prod';
-$handlerService = getenv('_HANDLER') ?: 'Dayspring\LambdaBundle\Service\EchoLambdaHandlerService';
+$handlerService = getenv('_HANDLER') ?: \Dayspring\LambdaBundle\Service\EchoLambdaHandlerService::class;
 
 $lambdaMemorySize = getenv('AWS_LAMBDA_FUNCTION_MEMORY_SIZE');
 if ($lambdaMemorySize) {
@@ -60,11 +60,7 @@ try {
     $service->init();
 } catch (Exception $e) {
     // error getting service
-    $lambdaRuntime->failInitialization(sprintf(
-        "Error initializing function - %s: %s",
-        get_class($e),
-        $e->getMessage()
-    ));
+    $lambdaRuntime->failInitialization($e);
 }
 
 while (true) {
