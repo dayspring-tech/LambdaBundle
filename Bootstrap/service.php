@@ -60,11 +60,7 @@ try {
     $service->init();
 } catch (Exception $e) {
     // error getting service
-    $lambdaRuntime->failInitialization(sprintf(
-        "Error initializing function - %s: %s",
-        get_class($e),
-        $e->getMessage()
-    ));
+    $lambdaRuntime->failInitialization($e);
 }
 
 while (true) {
